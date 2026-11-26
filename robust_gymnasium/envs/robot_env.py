@@ -175,14 +175,14 @@ class BaseRobotEnv(GoalEnv):
 
         if args.noise_factor == "state":
             if args.noise_type == "gauss":
-                obs["achieved_goal"] = obs["achieved_goal"] + random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+                obs["observation"] = obs["observation"] + random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
             elif args.noise_type == "shift":
-                obs["achieved_goal"] = obs["achieved_goal"] + args.noise_shift
+                obs["observation"] = obs["observation"] + args.noise_shift
             else:
-                obs["achieved_goal"] = obs["achieved_goal"]
+                obs["observation"] = obs["observation"]
                 print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
         else:
-            obs["achieved_goal"] = obs["achieved_goal"]
+            obs["observation"] = obs["observation"]
 
         if args.noise_factor == "reward":
             if args.noise_type == "gauss":
